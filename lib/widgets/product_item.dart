@@ -32,6 +32,18 @@ class ProductItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              'Price: \$${product.price}',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

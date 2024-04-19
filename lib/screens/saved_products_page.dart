@@ -6,8 +6,15 @@ import '../models/product.dart';
 import '../providers/database_provider.dart';
 import '../widgets/product_item.dart';
 
-class SaveProductPage extends StatelessWidget {
+class SaveProductPage extends StatefulWidget {
   const SaveProductPage({Key? key}) : super(key: key);
+
+  @override
+  _SaveProductPageState createState() => _SaveProductPageState();
+}
+
+class _SaveProductPageState extends State<SaveProductPage> {
+  List<Map<String, dynamic>> savedProducts = [];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class SaveProductPage extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else {
-                final savedProducts = snapshot.data!;
+                savedProducts = snapshot.data!;
                 return ListView.builder(
                   itemCount: savedProducts.length,
                   itemBuilder: (context, index) {
@@ -38,10 +45,22 @@ class SaveProductPage extends StatelessWidget {
                       image: savedProducts[index]['image'],
                       rating: savedProducts[index]['rating'],
                     );
-                    return SavedProductItem(product: product,
-                    onRemove: (){
-                      databaseProvider.removeData(product.id);
-                    },);
+                    return SavedProductItem(
+                      product: product,
+                      onRemove: () async {
+                        // Remove item from database
+                        await databaseProvider.removeData(product.id);
+
+                        // Update the list after removal
+                        final updatedProducts =
+                        await databaseProvider.queryData();
+
+                        // Trigger UI rebuild
+                        setState(() {
+                          savedProducts = updatedProducts;
+                        });
+                      },
+                    );
                   },
                 );
               }

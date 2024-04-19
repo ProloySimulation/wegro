@@ -20,7 +20,7 @@ class SignupProvider extends ChangeNotifier{
         );
         await _auth.signInWithCredential(credential);
         // Navigate to the next screen after successful signup
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => HomePage(),
@@ -40,7 +40,7 @@ class SignupProvider extends ChangeNotifier{
         password: password,
       );
       // Navigate to the next screen after successful signup
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(),
@@ -59,7 +59,7 @@ class SignupProvider extends ChangeNotifier{
         password: password,
       );
       // Navigate to the next screen after successful login
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(),

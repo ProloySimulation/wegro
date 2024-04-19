@@ -5,6 +5,7 @@ import 'package:wegro/providers/database_provider.dart';
 import 'package:wegro/providers/product_provider.dart';
 import 'package:wegro/providers/signup_provider.dart';
 import 'package:wegro/providers/single_product_provider.dart';
+import 'package:wegro/screens/auth_checker.dart';
 import 'package:wegro/screens/home_page.dart';
 import 'package:wegro/screens/saved_products_page.dart';
 import 'package:wegro/screens/sign_up_page.dart';
@@ -32,10 +33,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SignupProvider())
       ],
       child: MaterialApp(
-        home: SignUpPage(),
+        debugShowCheckedModeBanner: false,
+        home: AuthChecker(),
       ),
     );
   }
 }
-
-

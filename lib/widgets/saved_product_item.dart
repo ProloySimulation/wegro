@@ -36,12 +36,24 @@ class SavedProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Price: \$${product.price}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
                 GestureDetector(
                   onTap: onRemove,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      'assets/images/fav.png',
+                      'assets/images/trash.png',
                       width: 30,
                       height: 30,
                     ),

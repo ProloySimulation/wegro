@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   void _signOut(BuildContext context) async {
     try {
       await FirebaseAuth.instance.signOut();
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => SignUpPage(),
